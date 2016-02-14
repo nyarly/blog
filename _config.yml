@@ -1,0 +1,21 @@
+# Welcome to Jekyll!
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:           pretty
+
+# Site settings
+title: But Not In That Order
+email: nyarly@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Judson writes about a variety of things, mostly technical.
+  Computer programming, systems administration, the culture and society around both.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://judsonlester.info" # the base hostname & protocol for your site
+twitter_username: judsonlester
+github_username:  nyarly
+author:
+  name: Judson Lester
+  email: nyarly@gmail.com
+
+# Build settings
+markdown: kramdown
