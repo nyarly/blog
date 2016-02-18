@@ -2,21 +2,22 @@
 layout: post
 title: False Cognates
 ---
+
+This is a trap I've fallen into several times, and I'm not alone, by far.  It's
+a bad idea to use an analogy between your problem space and the language
+semantics your working in, and so proceed to map the problem using the language
+itself.
+
 ## This Is Like Inheritance, So...
 
-This is a trap I've fallen into several times, and I'm not alone, by far.  I
-feel like it's a bad idea to use an analogy between your problem space and the
-language semantics your working in, and so proceed to map the problem using the
-language itself.
-
-As another contrived example, imagine you've got a program that will have items
-that belong to categories.  The categories will get added to over time, and
-categories will have subcategories in a strict tree.  The items will all belong
+Imagine you've got a program that has items
+that belong to categories.  The categories get added to over time, and
+categories will have subcategories in a strict tree.  The items all belong
 to a single category and have well defined, parameterized variation within a
 category.
 
 "Aha!" you say.  "Categories are a lot like classes, and items are like
-instances of those classes.  I'm programming in (e.g.) Ruby, where I can knock
+instances of those classes.  I'll write this in Ruby, where I can knock
 out a custom subclass any old time!"  We start out with something like
 
 {% highlight ruby %}
@@ -32,45 +33,57 @@ RootCategory.sub_category(:Awesome)
 RootCategory.sub_category(:LessAwesome)
 {% endhighlight %}
 
-Yeah.  That's kind of what I'm talking about.  Best case, what's going to
-happen is that the spec is going to change - item parameters change by category
-(doable...) items can be in more than one category (modules?), categories can
-have more than one parent (modules...?), categories can be deleted... That's
-the best case.  Worst case is that I need to come along and integrate with your
-code, and boy will that be a pain in the neck.
+The problem is that the relationship between the problem space (items in
+categories) and the language semantics (instances of classes) is accidental.
+It's very convenient in the present moment, but where we need to be able to
+adapt to a changing problem domain, language semantics are relatively fixed.
 
-More controversially, imagine you have a piece of data that needs to be
-processed in many little ways.  Like, say, an HTTP request.  We need to confirm
-different headers, and load code and make DB connections available, until we
-get to the real app that's going to really produce the response, and then we're
-going to tweak that until it get's sent back to the browser.  And hey, doesn't
-that remind you of a call stack?  So maybe we could have a series of little
-one-method objects chained together so that they call each other and then
-return the response of the next thing down?  Wouldn't that be a nice way to
-decouple the various parts of processing HTTP?
+Best case, what's going to happen is that the spec is going to change. What if
+items can be in more than one category, categories can have more than one
+parent, or categories can be deleted... There's ways in which you might be able
+to support those changes in Ruby, but it'd get increasingly difficult.
 
-Thanks a heap, PEP-333, and your descendant, everyone's pal: Rack.  They're
-great, except if you want to do things in asymmetrical ways, or change the
-processing chain.  Or understand what the hell is going on.  (Given that there
-are multiple implementations of features that basic Rack provides, I think
-there's some credence to "what does that do?")
+Even worse, imagine that I wrote the above treatment of items-in-categories and
+you need to use the library in your application - and then you discover that
+you need to be able to delete categories. It's bad enough doing the backflips
+when you've got complete control over the code. There's no way to extend that
+kind of semantics-mapping smoothly.
+
+## Pipelines as Call Stacks
+
+As a further example, imagine you have a piece of data that needs to be
+processed in many little ways.   For instance, an HTTP request.  We need to
+confirm different headers, and load code and make DB connections available,
+until we get to the real app that's going to really produce the response, and
+then we're going to manipulate the response until it gets sent back to the
+browser.
+
+And hey, doesn't that remind you of a call stack?  So maybe we could
+have a series of little one-method objects chained together so that they call
+each other and then return the response of the next thing down?  Wouldn't that
+be a nice way to decouple the various parts of processing HTTP?
+
+That's the reasoning behind PEP-333, and its descendant Rack. It's a really
+powerful, easy to compose system, and Ruby web applications have been built on
+that basic premise for a long time now.
+
+The composible middleware pattern has drawbacks, as a consequence of being tied
+the the semantic form of method composition. You can't perform processing
+in asymmetrical ways, or change the processing chain on the fly.  Even allowing
+for up front manipulation of the chain starts introducing a lot of complexity
+into the otherwise simple composition.
+
+It can also be difficult to understand how the request gets processed in long
+pipelines, or what a particular middleware is doing because of how it interacts
+with with the composition chain. `Rack::Static` is a pretty good example of
+this, or `Rack::Mapping`, both of which dispatch requests to different child
+stacks depending on their characteristics.
 
 So on the one hand, don't do that.  Implement categories as their own kind of
 objects with normal references to each other instead of class-inheritance
 links.  Build a processing pipeline, where the next thing in the stack is a
 reference to an object rather than a proc embedded in the closure of another
 proc.
-
-On the other hand, there's a point where if you take that advice to it's
-logical conclusion, you ignore language idiom completely, or try to re-code
-other languages in the current one, and now you're fighting against language
-semantics.  You could argue that EventMachine is an example of this, or
-Celluloid.  You could also argue that the "compiles into..." boom recently is a
-sort of example of this, too - Coffeescript, Elixir, Clojure and all their
-friends.
-
-Maybe the swing is "it's all Turing-complete, so why bother with idiom?"  which
-I find a little depressing.
 
 ## Does It Go In This, or Just Around Here?
 
