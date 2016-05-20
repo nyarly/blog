@@ -3,10 +3,11 @@ layout: post
 title: Console User Interface
 ---
 
-Assume that users will copy and paste important strings. As such, don't put
-characters into those strings that aren't cogent. For instance, when reporting
-the existence of a new file, don't surround the path with quotation marks or
-include a trailing period. For best results, delimit such token strings with
+Assume that users will copy and paste important strings.
+As such, don't put characters into those strings that aren't cogent.
+For instance, when reporting the existence of a new file,
+don't surround the path with quotation marks or include a trailing period.
+For best results, delimit such token strings with
 whitespace, ideally newlines, in order to set them out and make copying easy.
 
 This task is complicated by variations between terminal emulators - for
