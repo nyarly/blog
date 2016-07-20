@@ -32,7 +32,8 @@ not the least of which becasue of how it was implemented by NPM.
 
 There's the objection that "that's not actually how we version software" -
 in other words,
-that sounds like a good idea, but really we've always changed versions when it felt right.
+that sounds like a good idea,
+but really we've always changed versions when it felt right.
 More challenging is that on certain projects if we changed the version according to semver,
 we'd be advancing the major version with every release.
 
