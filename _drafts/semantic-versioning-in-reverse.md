@@ -1,4 +1,4 @@
----
+--
 layout: post
 title: Semantic Versioning, in Reverse
 ---
@@ -11,7 +11,9 @@ is a relatively important concept in modern software development.
 It's a formulation of rough understandings of what the various parts of a version number mean
 in terms that are well agreed on.
 
-A software version (in general this is loosely true, but strictly so in semver) has three parts:
+A software version
+(in general this is loosely true, but in semver it is strictly so)
+has three parts:
 The major version number,
 the minor version number,
 and a subversion number (sometimes called the patchlevel.)
@@ -30,6 +32,16 @@ This simple formulation
 has raised a lot of ire over time,
 not the least of which becasue of how it was implemented by NPM.
 
+The most difficult hesitation to overcome is that
+the version of a piece of is part of its brand.
+It's easy to think about what the version of our software says about it;
+a 1.0 release implies maturity and completeness,
+without which others might pass us over.
+By the same token, increasing the minor version
+from 1.2 to 1.3 seems to suggest
+more work or progress
+that a pathlevel bump.
+
 There's the objection that "that's not actually how we version software" -
 in other words,
 that sounds like a good idea,
@@ -40,15 +52,154 @@ we'd be advancing the major version with every release.
 # Interface Design
 
 That's the issue I really want to address, though.
-I come to think that some of the furor against semver is
+I come to think that some of the furor against semver is because
+we've all failed to understand and disseminate
+the art of design and maintenance of a software interface.
 
+As a for instance, see if your experience gibes with mine:
+when I was first learning object oriented programming, (in Java)
+I was really confused by the access keywords.
+I think everyone plays with trivia about
+what the difference is between `public` and `protected` is,
+but the really pointed question is: what are they _for?_
+I habored this understanding that
+they were somehow defensive -
+that `private` methods were somehow "more secure"
+than `public` ones.
 
-Semver lays out what various version changes imply about the the code that is
-versioned.
+Later, relying on Rubydoc to browse code,
+I was frequently frustrated by other people using `private`,
+since it implicitly hid the code from documentation.
+Given the state of documentation in general,
+having quick-to-follow links and disclosure of source code was an enormous boon.
+So I did two things: I started using YARD
+(because it can be configured to ignore access keywords for the purpose of documentation)
+and I stopped adding access keywords to my own code.
+Everything was `public`, and I liked it that way.
 
-It's often easier to update the version based on the the changes that were made
-since last release.
+What became clear, though, is that
+I was implicitly exposing every method in my libraries as their interface.
+When I tried to update libraries I'd released
+I'd receive a bunch of issue reports that the new version didn't work
+with existing client code.
+At one point I considered never changing any of the methods in code I'd released,
+but the maintenance nightmare there was too daunting.
+Seeing how access keywords were being used poorly,
+I'd abandoned a useful and powerful tool.
 
+The truth is that access keywords are
+a kind of enforced documentation.
+They let us establish for other developers
+(first, and most of all)
+what parts of our library are its interface,
+and what's retained as internal implementation.
+Best of all, the rules about use are enforced
+at the language level, so
+there cannot be any confusion about what's what:
+if the compiler allows it, it's in the public interface.
 
-It requires more discipline, but still better is to resist or postpone making
-changes to code that will require "more significant" version changes.
+The simple rule about marking code entities
+(that is: functions, methods, classes, constants, whatever)
+public is that you're saying to the consumers of your code
+"this is the interface - this is how to use it."
+If you mark everything public, you're mixing in the useful interfaces with chaff.
+If I'm using your library, I'm within my rights to make use of anything you make public.
+And if you remove those methods or change their signatures,
+I'm right to be (loudly) annoyed;
+the responsible thing, in fact, is to cease to use your library.
+
+Moving quickly on from issues of open-source entitlement and programmer motivation,
+imagine the converse case: if all my methods are public,
+and the audience for my excitingly popular library use all of them
+what do I do when I want to change one of those methods
+to provide a new feature,
+or reduce repetition,
+or improve the structure of the code.
+There's tons of reasons to make changes to a library,
+but if all my methods are public and therefore consumed by some client code
+the I can't get any of the value of making those changes without breaking someone else's program.
+
+So what do we do about defining our interface?
+The actual process is pretty open,
+and I've had good experiences with many different approaches.
+Sometimes, I know well enough what the code needs to do
+that I can define the interface up front,
+write tests first
+and let the tests drive the development.
+Other times, libraries arise from an existing application,
+and the trick is to figure out
+where the boundary between the specific application
+and the reusable library lies.
+Regardless, the problem to solve is where that boundary is
+and what the points of access are through the boundary.
+
+Incidentally, automated tests are great for this.
+Even if you don't do test driven _development_,
+using tests to drive the _design_
+will lead to nicer interfaces,
+and the tests will help control regressions between versions of your library.
+Plus, well written tests can go a long way towards documenting the interface,
+although it must be said,
+they don't replace the need for good prose documentation.
+
+# To the Point
+
+After that long digression,
+we're back to deciding what version our release should be.
+First of all, the best part about semver it that
+until the 1.0 release,
+all bets are off.
+We're free to make releases and use them in our own code,
+or let others try it out and make suggestions,
+without yet committing to anything about the interface.
+That's a huge and important freedom,
+and one to make great use of.
+
+Rapidly changing interfaces are a drag, though.
+As method names change,
+and their parameters are updated,
+or types and classes get refined,
+client code often needs to be
+recompiled or even rewritten to make use of the new version.
+(There's the option to pin to a particular version,
+but then we leave ourselves outside of necessary updates
+to correct bugs or security issues.)
+
+The way to address the problem of the moving interface target
+is to decide on what the interface should be.
+That decision point gets codified in documentation.
+_That's_ when we release the 1.0:
+by way of announcing the stablized interface.
+
+From then on,
+whenever we make a new release,
+we need to consider what kind of change we've made:
+breaking changes update the major version,
+new features update the minor version,
+bug fixes update the patchlevel.
+Easy!
+
+# Planning Ahead
+
+From there,
+you quickly get a sense of what kind of update you're contemplating.
+Some changes need to be put off,
+because they'd involve making breaking changes,
+and you don't want to do a major version bump.
+
+One particularly elegant technique
+involves the idea of "deprecating" interfaces.
+As interfaces become older,
+or you add features that supplant them,
+tag them
+(with a comment, or using documentation markup)
+as being deprecated.
+When you decide that either
+the new interfaces are robust enough or
+that the old interfaces aren't carrying their weight enough,
+remove all the deprecated interfaces at once and do a major version release.
+(The EmberJS project espouses this technique,
+and it's a practice I've always admired.)
+
+Now you've stumbled into responsible maintenance of a library.
+The authors of client applications will thank you.
