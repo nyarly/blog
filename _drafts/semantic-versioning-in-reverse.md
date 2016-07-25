@@ -3,6 +3,23 @@ layout: post
 title: Semantic Versioning, in Reverse
 ---
 
+todo here:
+The observation is that
+the step past "What is Semver?"
+and "Oh, that sounds hard."
+is evaluating the changes you've just made
+and using semver to report their interface impact.
+
+The step past *that*
+is contemplating design changes
+in terms of how they can be made
+so that they minimize the semver change.
+Which is the reverse of the journeyman approach.
+
+So: if we apprach semver "in reverse"
+our design improves
+and our impact on our software ecosystem improves.
+
 # A Quick Recap
 
 [Semantic versioning](http://semver.org)
