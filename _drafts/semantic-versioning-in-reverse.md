@@ -1,4 +1,4 @@
---
+---
 layout: post
 title: Semantic Versioning, in Reverse
 ---
@@ -28,7 +28,8 @@ is a relatively important concept in modern software development.
 It's a formulation of rough understandings of what the various parts of a version number mean
 in terms that are well agreed on.
 
-A software version
+In semver,
+a software version
 (in general this is loosely true, but in semver it is strictly so)
 has three parts:
 The major version number,
@@ -71,6 +72,15 @@ we'd be advancing the major version with every release.
 So how do we figure out
 what version our release should be?
 
+We've just crushed out some code,
+banged out a PR,
+and merged it to master.
+All the tests pass,
+so let's get it out to
+NPM or Rubygems or Pip or whatever.
+But to do that, we have to decide
+what the new version will be.
+
 First of all, the best part about semver it that
 until the 1.0 release,
 all bets are off.
@@ -87,7 +97,7 @@ purely for early adopters.
 Anyone who tells you different
 is selling you something.
 
-Because,
+Because
 rapidly changing interfaces are a drag.
 As method names change,
 and their parameters are updated,
@@ -99,7 +109,11 @@ but then we leave ourselves outside of necessary updates
 to correct bugs or security issues.)
 Even as the consumers
 of our own component,
-we want to be able to get to 1.0.
+we want to be able to get to 1.0
+so that we can stop thinking about
+_this_ component's interface
+at the same time as we're working on
+_that_ application's feature set.
 
 The way to address the problem of the moving interface target
 is to decide on what the interface should be.
@@ -110,6 +124,8 @@ and how it should be used!"
 That decision point gets codified in documentation.
 _That's_ when we release the 1.0:
 as a way of announcing the stablization of the interface.
+
+[XXX How do we decide that? When is 1.0? How soon is now? ]
 
 From then on,
 whenever we make a new release,
@@ -122,7 +138,7 @@ Easy!
 We still find ourselves,
 however,
 sometimes thinking
-"oh, that really is a change to the interface...
+"oh, this release really is a change to the interface...
 that should be a major version bump."
 And frequent major bumps
 are just as annoying
@@ -143,11 +159,25 @@ when I was first learning object oriented programming, (in Java)
 I was really confused by the access keywords.
 I think everyone plays with trivia about
 what the difference is between `public` and `protected` is,
-but the really pointed question is: what are they _for?_
+(like, in Java,
+`protected` is defined in relationship to _packages_,
+but `private` is in relationship to classes,
+or something like that.)
+What the access keywords _mean_
+is one question.
+(With different answers in different languages.)
+(Ruby:
+`protected` means "defined by a superclass"
+`private` means "only with an implicit receiver".)
+
+But the really pointed question is: what are they _for?_
 I habored this understanding that
 they were somehow defensive -
 that `private` methods were somehow "more secure"
 than `public` ones.
+In retrospect,
+the idea is laughable,
+but I'm pretty sure I wasn't alone.
 
 Later, relying on Rubydoc to browse code,
 I was frequently frustrated by other people using `private`,
@@ -166,6 +196,11 @@ I'd receive a bunch of issue reports that the new version didn't work
 with existing client code.
 At one point I considered never changing any of the methods in code I'd released,
 but the maintenance nightmare there was too daunting.
+The point was,
+this is _exactly_ what marking methods `private` is all about:
+those are the methods we're saying are off limits
+to outside consumers of our code,
+and it's off limits so that we're free to change it.hjj
 Seeing how access keywords were being used poorly,
 I'd abandoned a useful and powerful tool.
 
@@ -182,20 +217,25 @@ if the compiler allows it, it's in the public interface.
 
 The simple rule about marking code entities
 (that is: functions, methods, classes, constants, whatever)
-public is that you're saying to the consumers of your code
+public is one way you're saying to the consumers of your code
 "this is the interface - this is how to use it."
-If you mark everything public,
-you're mixing in the useful interfaces with
+When I was marking everything public,
+I was mixing in the useful interfaces with
 little utitlity functions.
-If I'm using your library, I'm within my rights to make use of anything you make public.
-And if you remove those methods or change their signatures,
-I'm right to be (loudly) annoyed;
-the responsible thing, in fact, is to cease to use your library.
+If you're using my library,
+you're within your rights to make use of anything marked public.
+And if I remove those methods or change their signatures,
+you're right to be (loudly) annoyed;
+the responsible thing, in fact, is to cease to use the library.
+
+# From Access to Interface
 
 Moving quickly on from issues of open-source entitlement and programmer motivation,
-imagine the converse case: if all my methods are public,
+imagine the converse case:
+all my methods are public,
 and the audience for my excitingly popular library use all of them
 what do I do when I want to change one of those methods?
+
 I might want
 to provide a new feature,
 or reduce repetition,
@@ -206,6 +246,28 @@ but if all my methods are public and therefore consumed
 by some client code
 the I can't get any of the value of making those changes
 without breaking someone else's program.
+
+[ XXX There's more motivation to interfaces than code agility ]
+
+The interface also serves as
+a point of entry,
+an introduction to a component for newcomers.
+An idiomatic interface communicates
+the purpose
+and abilities of a module.
+
+Since interfaces serve as the seams
+between pieces of an application,
+they also serve as natural points of intrumentation.
+The interfaces are where interaction happens,
+and we can meaningfully inspect that interaction
+to get a view on what the application is doing.
+
+Likewise,
+interfaces are excellent subjects of testing,
+both as boundaries of a tested unit,
+and also as the template for dummies
+to replace the component when testing.
 
 So what do we do about defining our interface?
 The actual process is pretty open,
