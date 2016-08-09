@@ -3,24 +3,26 @@ layout: post
 title: Semantic Versioning, in Reverse
 ---
 
-todo here:
+_todo here
 The observation is that
 the step past "What is Semver?"
 and "Oh, that sounds hard."
 is evaluating the changes you've just made
-and using semver to report their interface impact.
+and using semver to report their interface impact._
 
-The step past *that*
+_The step past *that*
 is contemplating design changes
 in terms of how they can be made
 so that they minimize the semver change.
-Which is the reverse of the journeyman approach.
+Which is the reverse of the journeyman approach._
 
-So: if we apprach semver "in reverse"
+_So: if we apprach semver "in reverse"
 our design improves
-and our impact on our software ecosystem improves.
+and our impact on our software ecosystem improves._
 
-# A Quick Recap
+## A Quick Recap
+
+Let's start with a quick review of terms.
 
 [Semantic versioning](http://semver.org)
 (sometimes called "semver")
@@ -43,7 +45,7 @@ The major version changes when there are breaking changes to the interface.
 The minor version changes when new features are added to the software.
 The subversion changes for any other release of the software.
 
-# So Far, So Good
+## So Far, So Good
 
 This simple formulation
 (and to be clear, this is a simplified version of a straighforward specification)
@@ -67,7 +69,7 @@ but really we've always changed versions when it "felt" right.
 More challenging is that on certain projects if we changed the version according to semver,
 we'd be advancing the major version with every release.
 
-# To the Point
+## To the Point
 
 So how do we figure out
 what version our release should be?
