@@ -3,26 +3,46 @@ layout: post
 title: Semantic Versioning, in Reverse
 ---
 
-_todo here
-The observation is that
-the step past "What is Semver?"
-and "Oh, that sounds hard."
-is evaluating the changes you've just made
-and using semver to report their interface impact._
-
-_The step past *that*
-is contemplating design changes
-in terms of how they can be made
-so that they minimize the semver change.
-Which is the reverse of the journeyman approach._
-
-_So: if we apprach semver "in reverse"
-our design improves
-and our impact on our software ecosystem improves._
+This needs a huge edit.
+Outlining:
 
 ## A Quick Recap
+* Intro to semantic versioning
+    * Nuts and bolts
+## Motivation
+    * General value
+        * in terms of conservative updates
+        * As compared to locked versions
+        * as maintainer, adoption
+        * as maintainer, warm fuzzies
+        * maintainer == consumer
 
-Let's start with a quick review of terms.
+## In Practice
+* How do we do that?
+    * Consider the changes we've made since last release...
+    * In terms of interface
+        * What's an interface, exactly
+
+### An Aside about `private`
+        * The access keyword story
+        * That's an interface
+
+
+## When Last We Saw Our Heroes
+    * What changed: bump like that.
+    * Maybe not ready for 1.0 (if we can't apply process)
+
+## Leader and Follower
+* In reverse
+    * That is: consider changes up front
+    * Try to limit changes to interface
+       * Make patchlevel changes freely
+       * Consider minor version changes carefully
+          * Why?
+       * Resist major version changes strenuously
+          * The ember deprecation method
+
+
 
 [Semantic versioning](http://semver.org)
 (sometimes called "semver")
@@ -45,34 +65,52 @@ The major version changes when there are breaking changes to the interface.
 The minor version changes when new features are added to the software.
 The subversion changes for any other release of the software.
 
-## So Far, So Good
+# So Far, So Good
 
 This simple formulation
 (and to be clear, this is a simplified version of a straighforward specification)
 has raised a lot of ire over time,
 not the least of which becasue of how it was implemented by NPM.
 
-The most difficult hesitation to overcome is that
+One objection that comes up is that
 the version of a piece of software is part of its brand.
-It's easy to think about what the version of our software says about it;
-a 1.0 release implies maturity and completeness,
-without which others might pass us over.
+A 1.0 release implies that the project is in some way
+mature or complete.
+If we put a 0.9 version on the release
+others might pass us over.
 By the same token, increasing the minor version
 from 1.2 to 1.3 seems to suggest
 more work or progress
 that a patchlevel bump.
 
-There's the objection that "that's not actually how we version software" -
-in other words,
+There's the objection that "that's not actually how we version software."
+In other words,
 that sounds like a good idea,
 but really we've always changed versions when it "felt" right.
-More challenging is that on certain projects if we changed the version according to semver,
+
+More challenging is that on certain projects
+if we changed the version according to semver,
 we'd be advancing the major version with every release.
 
-## To the Point
+These certainly aren't all the reservations
+that I've heard to using semver,
+but they're frequent
+and significant.
+
+_Ed: This isn't entirely vanity,
+but the reverse perspective is that
+the consumers of our software
+are right to expect that we accurately signal
+its state of development._
+
+# To the Point
 
 So how do we figure out
 what version our release should be?
+
+We assign versions during releases.
+Releasing is a part of the software development process
+(some might say the most important part.)
 
 We've just crushed out some code,
 banged out a PR,
