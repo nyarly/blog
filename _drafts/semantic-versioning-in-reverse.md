@@ -7,17 +7,107 @@ This needs a huge edit.
 Outlining:
 
 ## A Quick Recap
-* Intro to semantic versioning
-    * Nuts and bolts
+
+[Semantic versioning](http://semver.org)
+(sometimes called "semver")
+is a relatively important concept in modern software development.
+It's a formulation of rough understandings of what the various parts of a version number mean
+in terms that are well agreed on.
+
+In semver,
+a software version
+(in general this is loosely true, but in semver it is strictly so)
+has three parts:
+The major version number,
+the minor version number,
+and a subversion number (sometimes called the patchlevel.)
+The three parts are connected with periods, like this:
+**1.3.5**
+
+Semver specifies that those three parts have very distinct meanings.
+The major version changes when there are breaking changes to the interface.
+The minor version changes when new features are added to the software.
+The subversion changes for any other release of the software.
+
 ## Motivation
-    * General value
-        * in terms of conservative updates
-        * As compared to locked versions
-        * as maintainer, adoption
-        * as maintainer, warm fuzzies
-        * maintainer == consumer
+The value of semantic versioning as a practice
+comes from
+the terse, precise communication about
+the compatibility of software over time.
+
+It's extremely valuable to be able to
+find code ready-made to provide functionality we require,
+especially when it involves the implementation of a standard protocol
+or the encapsulation of an API.
+Truthfully, there are many reasons that a code library might be
+useful, and reusable.
+
+Like everything in engineering,
+there are tradeoffs.
+And one of the tradeoffs of resusable software
+is maintaining compatibility.
+
+When you find a library that
+does the thing you need it to do
+for your current use case, all's well and good.
+
+One longstanding solution to using that code is to
+copy it wholesale into your code and
+use it as if you'd written it from whole cloth.
+Some modern systems persist with this approach,
+often describing the procedure as
+"checking in vendored code."
+The chief and abiding advantage to this approach
+is that you don't have to worry about
+the boudary between your code and
+the third-party library anymore.
+
+Sadly, we often find reasons that
+we need to update our copy of these libraries.
+For instance, there's a bug in the library
+that its maintainer has fixed upstream.
+More urgently, fixes to security issues
+should be propigated as quickly as possible.
+It's easy (but often wrong) to
+disregard new features made available in newer versions.
+Often those new features are attractive for
+the same reason that the library was attractive in the first place:
+they'll save us implementation time.
+
+The problem is, how can we know that
+updating to a new version of the software
+won't break the application that depends on it?
+
+So we're caught in a bind:
+we can never update and accept or remediate bugs and security flaws,
+we can adopt code wholesale and become a second maintainer,
+or we can cope with the breakages that occur when we update.
+All of which sounds like a terrible proposition.
+The virtue of semantic versioning is that we can
+reduce the cost of the last option,
+by making the breakages more predictable,
+or even offering the assurance that a particular version
+won't break our application.
+
+So as a consumer of third-party libraries,
+the value of well managed semver is pretty clear.
+It's a way out of the update bind.
+As a maintainer,
+we get the good feeling that we're "taking care" of our users.
+More concretely, we can hope and expect that
+our software will see greater adoption,
+which we might desire for a number of reasons.
+
+But also don't ignore the
+(more frequent)
+case where the maintainer of a library is also its consumer.
+There's amazing value in being able to set down one project
+sometimes for months,
+and work on another than consumes it,
+without worrying about the details inside it.
 
 ## In Practice
+
 * How do we do that?
     * Consider the changes we've made since last release...
     * In terms of interface
@@ -43,65 +133,6 @@ Outlining:
           * The ember deprecation method
 
 
-
-[Semantic versioning](http://semver.org)
-(sometimes called "semver")
-is a relatively important concept in modern software development.
-It's a formulation of rough understandings of what the various parts of a version number mean
-in terms that are well agreed on.
-
-In semver,
-a software version
-(in general this is loosely true, but in semver it is strictly so)
-has three parts:
-The major version number,
-the minor version number,
-and a subversion number (sometimes called the patchlevel.)
-The three parts are connected with periods, like this:
-**1.3.5**
-
-Semver specifies that those three parts have very distinct meanings.
-The major version changes when there are breaking changes to the interface.
-The minor version changes when new features are added to the software.
-The subversion changes for any other release of the software.
-
-# So Far, So Good
-
-This simple formulation
-(and to be clear, this is a simplified version of a straighforward specification)
-has raised a lot of ire over time,
-not the least of which becasue of how it was implemented by NPM.
-
-One objection that comes up is that
-the version of a piece of software is part of its brand.
-A 1.0 release implies that the project is in some way
-mature or complete.
-If we put a 0.9 version on the release
-others might pass us over.
-By the same token, increasing the minor version
-from 1.2 to 1.3 seems to suggest
-more work or progress
-that a patchlevel bump.
-
-There's the objection that "that's not actually how we version software."
-In other words,
-that sounds like a good idea,
-but really we've always changed versions when it "felt" right.
-
-More challenging is that on certain projects
-if we changed the version according to semver,
-we'd be advancing the major version with every release.
-
-These certainly aren't all the reservations
-that I've heard to using semver,
-but they're frequent
-and significant.
-
-_Ed: This isn't entirely vanity,
-but the reverse perspective is that
-the consumers of our software
-are right to expect that we accurately signal
-its state of development._
 
 # To the Point
 
