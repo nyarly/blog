@@ -103,7 +103,7 @@ But also don't ignore the
 case where the maintainer of a library is also its consumer.
 There's amazing value in being able to set down one project
 sometimes for months,
-and work on another than consumes it,
+and work on another than consumes its interface
 without worrying about the details inside it.
 
 ## In Practice
