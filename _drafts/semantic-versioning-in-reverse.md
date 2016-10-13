@@ -3,15 +3,13 @@ layout: post
 title: Semantic Versioning, in Reverse
 ---
 
-This needs a huge edit.
-Outlining:
-
 ## A Quick Recap
 
 [Semantic versioning](http://semver.org)
 (sometimes called "semver")
 is a relatively important concept in modern software development.
-It's a formulation of rough understandings of what the various parts of a version number mean
+It's a formulation of rough understandings of
+what the various parts of a version number mean
 in terms that are well agreed on.
 
 In semver,
@@ -30,8 +28,7 @@ The minor version changes when new features are added to the software.
 The subversion changes for any other release of the software.
 
 ## Motivation
-The value of semantic versioning as a practice
-comes from
+The value of semantic versioning as a practice comes from
 the terse, precise communication about
 the compatibility of software over time.
 
@@ -43,8 +40,8 @@ Truthfully, there are many reasons that a code library might be
 useful, and reusable.
 
 Like everything in engineering,
-there are tradeoffs.
-And one of the tradeoffs of resusable software
+there are trade-offs.
+And one of the trade-offs of resusable software
 is maintaining compatibility.
 
 When you find a library that
@@ -59,7 +56,7 @@ often describing the procedure as
 "checking in vendored code."
 The chief and abiding advantage to this approach
 is that you don't have to worry about
-the boudary between your code and
+the boundary between your code and
 the third-party library anymore.
 
 Sadly, we often find reasons that
@@ -67,7 +64,7 @@ we need to update our copy of these libraries.
 For instance, there's a bug in the library
 that its maintainer has fixed upstream.
 More urgently, fixes to security issues
-should be propigated as quickly as possible.
+should be propagated as quickly as possible.
 It's easy (but often wrong) to
 disregard new features made available in newer versions.
 Often those new features are attractive for
@@ -82,7 +79,7 @@ So we're caught in a bind:
 we can never update and accept or remediate bugs and security flaws,
 we can adopt code wholesale and become a second maintainer,
 or we can cope with the breakages that occur when we update.
-All of which sounds like a terrible proposition.
+All of these choices sounds like terrible propositions.
 The virtue of semantic versioning is that we can
 reduce the cost of the last option,
 by making the breakages more predictable,
@@ -108,49 +105,28 @@ without worrying about the details inside it.
 
 ## In Practice
 
-* How do we do that?
-    * Consider the changes we've made since last release...
-    * In terms of interface
-        * What's an interface, exactly
+Every new release of a piece of software
+should have a new version number.
+The versions should always increase.
+In some ways, the version acts as
+a kind of counter,
+marking out releases on a timeline.
 
-### An Aside about `private`
-        * The access keyword story
-        * That's an interface
-
-
-## When Last We Saw Our Heroes
-    * What changed: bump like that.
-    * Maybe not ready for 1.0 (if we can't apply process)
-
-## Leader and Follower
-* In reverse
-    * That is: consider changes up front
-    * Try to limit changes to interface
-       * Make patchlevel changes freely
-       * Consider minor version changes carefully
-          * Why?
-       * Resist major version changes strenuously
-          * The ember deprecation method
-
-
-
-# To the Point
-
+But every new release *could*
+increase any of the three components
+of the version.
 So how do we figure out
 what version our release should be?
 
-We assign versions during releases.
-Releasing is a part of the software development process
-(some might say the most important part.)
-
-We've just crushed out some code,
-banged out a PR,
-and merged it to master.
-All the tests pass,
-so let's get it out to
-NPM or Rubygems or Pip or whatever.
-But to do that, we have to decide
-what the new version will be.
+The first release is easy: start with 0.0.1
+and no one can say that you're wrong.
+But after that, how do we decide how to
+increment a version?
+In other words, should we bump
+the major,
+minor,
+or subversion
+for this release?
 
 First of all, the best part about semver it that
 until the 1.0 release,
@@ -161,42 +137,28 @@ without yet committing to anything about the interface.
 That's a huge and important freedom,
 and one to make great use of.
 
-We shouldn't expect
-a lot of adoption yet, though.
-0.x releases are
-purely for early adopters.
-Anyone who tells you different
-is selling you something.
+By the same token,
+0.x releases make no promises.
+Anything can change at any time,
+which is good in the early days
+of a new package.
+But when you're trying to *use* the package,
+that's really a drag.
 
-Because
-rapidly changing interfaces are a drag.
-As method names change,
-and their parameters are updated,
-or types and classes get refined,
-client code often needs to be
-recompiled or even rewritten to make use of the new version.
-(There's the option to pin to a particular version,
-but then we leave ourselves outside of necessary updates
-to correct bugs or security issues.)
-Even as the consumers
-of our own component,
-we want to be able to get to 1.0
-so that we can stop thinking about
-_this_ component's interface
-at the same time as we're working on
-_that_ application's feature set.
-
-The way to address the problem of the moving interface target
-is to decide on what the interface should be.
 At some point we decide
 "This!
 This is how this should work,
 and how it should be used!"
 That decision point gets codified in documentation.
 _That's_ when we release the 1.0:
-as a way of announcing the stablization of the interface.
+as a way of announcing the stabilization of the interface.
 
-[XXX How do we decide that? When is 1.0? How soon is now? ]
+The 1.0 release is important.
+It's a moment when we say to all our consumers
+(who might be ourselves in five minutes)
+"Trust me to shepherd this code."
+We're making a commitment,
+and we should take that seriously.
 
 From then on,
 whenever we make a new release,
@@ -206,19 +168,14 @@ new features update the minor version,
 bug fixes update the patchlevel.
 Easy!
 
-We still find ourselves,
-however,
-sometimes thinking
-"oh, this release really is a change to the interface...
-that should be a major version bump."
-And frequent major bumps
-are just as annoying
-(and time consuming)
-as a lot of activity on a 0.x release series.
+Of course,
+that reasoning presupposes that we understand
+what makes for a breaking change.
+And to reason about that,
+we have to have decided on our package's
+_interface._
 
-So now what?
-
-# Interface Design
+### An Aside about `private`
 
 That's the issue I really want to address, though.
 I come to think that some of the furor against semver is because
@@ -242,7 +199,7 @@ is one question.
 `private` means "only with an implicit receiver".)
 
 But the really pointed question is: what are they _for?_
-I habored this understanding that
+I harbored this understanding that
 they were somehow defensive -
 that `private` methods were somehow "more secure"
 than `public` ones.
@@ -362,6 +319,41 @@ and the tests will help control regressions between versions of your library.
 Plus, well written tests can go a long way towards documenting the interface,
 although it must be said,
 they don't replace the need for good prose documentation.
+        * The access keyword story
+        * That's an interface
+
+
+## When Last We Saw Our Heroes
+    * What changed: bump like that.
+    * Maybe not ready for 1.0 (if we can't apply process)
+
+## Leader and Follower
+* In reverse
+    * That is: consider changes up front
+    * Try to limit changes to interface
+       * Make patchlevel changes freely
+       * Consider minor version changes carefully
+          * Why?
+       * Resist major version changes strenuously
+          * The ember deprecation method
+
+###### old stuff #######
+
+# To the Point
+
+We still find ourselves,
+however,
+sometimes thinking
+"oh, this release really is a change to the interface...
+that should be a major version bump."
+And frequent major bumps
+are just as annoying
+(and time consuming)
+as a lot of activity on a 0.x release series.
+
+
+# Interface Design
+
 
 # Planning Ahead
 
