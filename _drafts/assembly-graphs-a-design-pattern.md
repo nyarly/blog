@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Assembly Graphs: a Design Pattern
+title: 'Assembly Graphs: a Design Pattern'
 ---
 # Assembly Graphs
 
