@@ -3,6 +3,22 @@ layout: post
 title: Semantic Versioning, in Reverse
 ---
 
+As phenomenal a concept as it is,
+semantic versioning
+often gets a bad rap.
+Many developers
+publicly express their frustration
+(or even contempt)
+for this tidy codification of
+a core principle of software design:
+the definition of interfaces.
+I tend to think that it's not
+semantic versioning
+that's badly understood,
+but the idea of
+what an interface is
+and how to design one.
+
 ## A Quick Recap
 
 [Semantic versioning](http://semver.org)
@@ -50,6 +66,14 @@ Like everything in engineering,
 there are trade-offs.
 And one of the trade-offs of reusable software
 is maintaining compatibility.
+It's frustrating when
+a library your software has come to depend on
+releases and update,
+and how your code won't compile because
+it expects features of that library that have changed.
+How many hours (or years!) of developer time
+have been burnt in the effort
+to adapt to a shifting interface?
 
 One longstanding solution to using that code is to
 copy it wholesale into your code and
@@ -65,12 +89,13 @@ the third-party library anymore.
 It's all yours, for good or ill.
 
 If there were bugs in the library at the moment we copied it,
-now those are our bugs to copy.
+now those are our bugs to maintain.
 Since we're not the original author,
 we don't have the advantage of bug reports from other users.
-Those bugs are likely to be fixed by the upstream maintainer.
+So, those bugs are likely to be fixed by the upstream maintainer.
 More urgently, fixes to security issues
-should be propagated as quickly as possible.
+should be propagated as quickly as possible,
+but we're sitting on an old copy of the code.
 
 Beyond the very real maintenance issues,
 it's easy (but often wrong) to
@@ -82,6 +107,14 @@ they'll save us implementation time.
 The problem is, how can we know that
 updating to a new version of the software
 won't break the application that depends on it?
+Maybe we'll need to do more work
+keeping up with changes in the library we're tracking
+than we would to simply do just the maintenance we need ourselves.
+Of course, we can't know for certain
+whether that's true.
+Once you start considering the possibility
+you'll always wonder about
+what could have been.
 
 So we're caught in a bind:
 we can choose to never update
@@ -104,16 +137,29 @@ More concretely, we can hope and expect that
 our software will see greater adoption,
 which we might desire for a number of reasons.
 
+Most of all, semantic versioning is about
+recognizing that writing software is a human act:
+we write software for other humans.
+Part of doing things with and for each other
+is communicating about what we're doing.
+Semantic versioning provide really powerful support for that communication.
+It's a well known shorthand
+for complicated ideas,
+as well as being a social prompt to
+talk about the context your software expects.
+
 But also don't ignore the
-(more frequent)
 case where the maintainer of a library is also its primary consumer.
 There's amazing value in being able to set down one project
 sometimes for months,
 and work on another than consumes its interface
 without worrying about the details inside it.
+Clear communication with yourself
+months from now
+is at least as valuable as
+communication with a larger community of developers.
 
 ## In Practice
-[comm]: # (I'd like to have something in here about semver and communication)
 
 Every new release of a piece of software
 should have a new version number.
@@ -192,8 +238,6 @@ I come to think that some of the furor against semver is because
 we've all failed to understand and disseminate
 the art of design and maintenance of a software interface.
 
-[furor]: # (What furor?)
-
 As a for instance, see if your experience gibes with mine:
 when I was first learning object oriented programming,
 (in Java)
@@ -227,7 +271,7 @@ since it implicitly hid the code from documentation.
 
 If you're paying careful attention,
 you'll notice that
-I'm talking about using a documentation tool
+I'm talking about using a _documentation_ tool
 to _browse code._
 Because of the tragic state of documentation
 (and Github README files are not helping...)
@@ -242,13 +286,13 @@ No problem, I can just find the docs for those methods and repeat...
 unless those methods are marked `private`.
 
 Given the wretched state of documentation in general,
-(and for a prime example, check out [this yokel's profile.](https://rubygems.org/profiles/nyarly))
+(and for a prime example, check out [this yokel's profile.](https://rubygems.org/profiles/nyarly "i.e. mine"))
 I did two things: I started using [YARD](http://yardoc.org/)
 (because it can be configured to ignore access keywords for the purpose of documentation)
 and I stopped adding access keywords to my own code.
 Everything was `public`, and I liked it that way.
 
-What became clear, though, is that
+What became clear though, is that
 I was implicitly exposing every method in my libraries as their interface.
 When I tried to update libraries I'd released
 I'd receive a bunch of issue reports that the new version didn't work
@@ -274,6 +318,19 @@ at the language level, so
 there cannot be any confusion about what's what:
 if the compiler allows it, it's in the public interface.
 
+Here we find another trade off.
+Private aspects of a library are easier to change over time
+because only the library itself uses them,
+and if its tests all pass, we can be confident we haven't broken anything.
+But to be useful, we have to
+expose some parts as public.
+What to expose means predicting which uses will be
+most common
+or most powerful
+for the consumers of the library.
+Exposing everything means we leave that decision up to our users,
+but it means that every change will break somebody's program.
+
 The simple rule about marking code entities
 (that is: functions, methods, classes, constants, whatever)
 public is one way you're saying to the consumers of your code
@@ -285,7 +342,7 @@ If you're using my library,
 you're within your rights to make use of anything marked `public`.
 And if I remove those methods or change their signatures,
 you're right to be (loudly) annoyed;
-the responsible thing, in fact, is to cease to use the library.
+the responsible thing, in fact, is to cease to use my library.
 After all, it's causing unplanned maintenance work to keep up with,
 and it's likely to keep causing that work.
 
@@ -366,7 +423,6 @@ It must be said though,
 they don't replace the need for good prose documentation.
 
 ## When Last We Saw Our Heroes
-[repeat]: # (This repeats almost verbatim passage from above)
 
 But we were talking about how to apply semver to our projects.
 
@@ -383,12 +439,13 @@ to find what changed.
 Then we ask:
 "did we change the interface?
 Are there methods or types missing,
-or still present but changed in incompatible ways?"
+or still present but changed in incompatible ways?
+Did any methods change their parameters?"
 If the answer is yes, then we need to bump the major version.
 
 "Did we add to the interface?
 Are there new methods or types?
-Did existing methods learn to accept new values?"
+Did existing methods learn to accept a wider array of values?"
 If the answer is yes, we need to bump the minor version.
 
 "Are all the changes in this revision to fix bugs?
