@@ -6,6 +6,15 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
+  <!-- Twitter Summary Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@judsonlester" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:description" content="{{ page.excerpt }}" />
+  <!-- ... until I figure out a good image to use ...
+    <meta name="twitter:image" content="summary" />
+  -->
+
   <title>
     {% if page.title == "Home" %}
       {{ site.title }} &middot; {{ site.tagline }}
