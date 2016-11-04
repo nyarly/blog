@@ -11,9 +11,9 @@
   <meta name="twitter:site" content="@judsonlester" />
   <meta name="twitter:title" content="{{ page.title }}" />
   <meta name="twitter:description" content="{{ page.excerpt }}" />
-  <!-- ... until I figure out a good image to use ...
-    <meta name="twitter:image" content="summary" />
-  -->
+  {% if page.image %}
+  <meta name="twitter:image" content="{{ page.image | prepend: site.baseurl }}" />
+  {% endif %}
 
   <title>
     {% if page.title == "Home" %}
