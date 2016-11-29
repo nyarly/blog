@@ -3,6 +3,13 @@ layout: post
 title: Application and Libraries, a Pattern
 ---
 
+# Notes
+
+An application should have enough information in it to update/reinstall.
+(Go exes that broke after Sierra update)
+
+# Draft
+
 In the past decade or so, we've seen a huge uptick in reusable software.
 From Linux distributions built around packinging systems,
 up through the unrelenting firehose that is NPM
@@ -100,7 +107,7 @@ I might reasonably assume that I can pass that X to functions in version 2 that 
 But the opacity of that value is part of the guarantees of good encapsulation,
 and it's completely reasonable that the library changed the meaning of X between versions.
 
-The way to guard against that is to separate the differing versions 
+The way to guard against that is to separate the differing versions
 with interfaces controlled at the execution environment level.
 Two different running applications can both make use of different versions of the same library
 and communicate with one another via e.g. network calls.
@@ -140,20 +147,32 @@ are resolved based on the transitive closure of the dependencies of the
 libraries, but once resolved becomes a simple list of pairs like `(library,
 precise version)`.
 
+The author of the **application** has the ultimate right and responsibility
+to determine the versions of libraries their application uses.
+Automatic resolution should ease this process, not subvert it.
+The **user** of an application,
+regardless of their technical savvy,
+should never have to determine the versions of libraries their software uses.
+
 In order to accomplish this, an application's desired libraries should be
 enumerated, complete with versioning, and a tool used to attempt to resolve the
 versions required. Failed resolutions should be reported to the user, but
 otherwise the resolved precise versions should be recorded. The execution
 context should rely on the precise versions.
 
+## Antipatterns
+
 Multiple versions of a single library within an application is an anti-pattern
-(or at least counter-indicated by this pattern). At the very least, there's the
-existant chance that data returned by one version of a library might be passed
-back into the interface of a different version. The clients of the differing
-libraries would be acting in best possible faith, and the libraries themselves
-might have acted in best integrity with regards to versioning their interfaces.
-The resulting bugs are difficult to locate, hard to resolve, and would be
-completely the fault of the packaging system.
+(or at least counter-indicated by this pattern).
+At the very least,
+there's the existant chance that data returned by one version of a library
+might be passed back into the interface of a different version.
+The clients of the differing libraries would be acting in best possible faith,
+and the libraries themselves might have acted in best integrity
+with regards to versioning their interfaces.
+The resulting bugs are difficult to locate,
+hard to resolve,
+and are completely the fault of the packaging system.
 
 Resolving library versions at runtime is also suspect. Versioning policy is an
 excellent idea. It's absurd to suggest that every library author can completely
