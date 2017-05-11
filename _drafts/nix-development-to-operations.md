@@ -3,6 +3,10 @@ layout: post
 title: Nix - development to operations
 ---
 
+# Nix
+
+NiiiNix
+
 nix as an OS, on Linux or Mac
 nix-shell as an uber-rvm
 default.nix for deployment (instead of heroku push, or capistrano)
