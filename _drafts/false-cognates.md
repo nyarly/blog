@@ -3,6 +3,8 @@ layout: post
 title: False Cognates
 ---
 
+This is a set of posts, I think. Link 'em together etc.
+
 This is a trap I've fallen into several times, and I'm not alone, by far.  It's
 a bad idea to use an analogy between your problem space and the language
 semantics your working in, and so proceed to map the problem using the language
