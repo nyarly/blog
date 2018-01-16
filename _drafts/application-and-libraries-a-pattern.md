@@ -8,6 +8,26 @@ title: Application and Libraries, a Pattern
 An application should have enough information in it to update/reinstall.
 (Go exes that broke after Sierra update)
 
+Application is right scope.
+System is too broad.
+Library too small.
+Sytem too broad: multiple applications forced to
+abitrarily choose between library versions.
+(glibc & kernel?)
+Library too small because of
+opaque data structure.
+Application is the scope within which
+we consider memory layout and
+function interfaces.
+
+By implication,
+the system needs to be able to
+install multiple versions of a library
+provide the correct version to an application
+
+
+Native extensions in Ruby?
+
 # Draft
 
 In the past decade or so,
@@ -60,9 +80,7 @@ when a process starts on a computer,
 the code that will be executed
 in that process is circumscribed by an application.
 
-Libraries are reusable code components.
-In fact, the _unit_ of reusable code
-should be considered to be "the library."
+Library is a unit of code reuse.
 
 Applications should make use of libraries.
 
@@ -74,12 +92,17 @@ When, for instance, your code fits into a single screen of text.
 In the ideal case,
 an application consists merely of
 a list of library dependencies
-and thin configuration of how they interact.
+and thin glue of how they interact.
 Authors embarking on writing new applications
 should consider how
 their novel code
 might be provided as a library
 and actually distribute an application that depends on the library code.
+
+Conversely, if it isn't novel,
+use a library,
+adapt to its implementation
+submit PRs back to the authors.
 
 Libraries themselves have dependencies.
 
