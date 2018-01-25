@@ -112,10 +112,14 @@ first we collect a list of all the libraries that the application depends on.
 Then we look at the dependencies of those libraries
 and collect them into the list.
 We keep doing this until we don't add any more libraries to the list.
-Finally, we determine which version(s) of each library we'll be use.
+Finally, we determine which version of each library we'll be use.
 The resulting complete list
 of libraries and their versions
 is the resolved dependencies of the application.
+
+Every library used within an application
+(directly or indirectly)
+one version.
 
 # A Pattern
 
