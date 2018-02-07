@@ -13,11 +13,14 @@ let
   };
 in
   stdenv.mkDerivation {
-    name = "blog-shell";
+    name = "jdl-blog";
     src = ./.;
 
     buildInputs = [
       rubyEnv
       bundler
     ];
+
+    buildPhase = "jekyll build";
+    installPhase = "cp -a _site $out";
   }
