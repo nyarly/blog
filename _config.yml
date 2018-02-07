@@ -19,3 +19,11 @@ author:
 
 # Build settings
 markdown: kramdown
+
+exclude:
+  - Rakefile
+  - shell.nix
+  - default.nix
+  - gemset.nix
+  - Gemfile
+  - Gemfile.lock
