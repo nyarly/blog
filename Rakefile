@@ -6,4 +6,13 @@ task :build do
   sh 'jekyll build'
 end
 
+task :update do
+  puts ENV['NIXOPS_DIR']
+  sh "nix-prefetch-git --no-deepClone git@github.com:nyarly/blog.git| jq '.sha256' > #{ENV['NIXOPS_DIR']}/blog/source.nix"
+
+  %w[Gemfile Gemfile.lock gemset.nix].each do |file|
+    cp file, Pathname.new(ENV['NIXOPS_DIR']).join("blog", file).expand_path
+  end
+end
+
 task :default => [:build, :push]
