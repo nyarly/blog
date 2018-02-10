@@ -3,7 +3,7 @@ layout: post
 title: A Simple Webservers with NixOps
 ---
 
-After working with Nix and [NixOS](https://nixos.org/) casually for about a year
+After working with Nix and NixOS casually for about a year
 I started to play with NixOps, the deployment tooling built on top of Nix.
 Right away, my reaction was
 "gosh, that was easy!"
@@ -41,7 +41,7 @@ I wanted to migrate my personal web presence
 onto servers I'm directly responsible for.
 
 The last time I refreshed my working machine,
-I converted it over to NixOS,
+I converted it over to [NixOS](https://nixos.org/),
 and I've been so pleased
 with that ongoing experience
 that I thought I'd give NixOps
