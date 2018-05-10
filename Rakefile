@@ -15,6 +15,9 @@ task :update do
   %w[default.nix Gemfile Gemfile.lock gemset.nix].each do |file|
     cp file, Pathname.new(ENV['NIXOPS_DIR']).join("blog", file).expand_path
   end
+
+  puts
+  puts "Remember to `cd #{ENV['NIXOPS_DIR']}; nixops deploy -d webserver`"
 end
 
 task :default => [:build, :push]
