@@ -1,11 +1,8 @@
-task :push do
-  sh 'rsync -av _site/ lrd-admin:/var/www/clients/judsonlester.info/'
-end
-
 task :build do
   sh 'jekyll build'
 end
 
+desc "Update the pinned version in the Nixops setup"
 task :update do
   puts ENV['NIXOPS_DIR']
   sh %[git log -n 1 --pretty=format:"\\"%H\\"" > #{ENV['NIXOPS_DIR']}/blog/commit.nix]
