@@ -6,7 +6,7 @@ permalink:           pretty
 # Site settings
 title: But Not In That Order
 email: nyarly@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   Judson writes about a variety of things, mostly technical.
   Computer programming, systems administration, the culture and society around both.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -17,7 +17,6 @@ author:
   name: Judson Lester
   email: nyarly@gmail.com
 
-# Build settings
 markdown: kramdown
 
 exclude:
