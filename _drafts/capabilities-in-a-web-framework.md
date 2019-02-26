@@ -24,3 +24,5 @@ the error handling should be seamless:
 a security violation should be
 as easy to recover from
 as an empty DB response.
+https://en.wikipedia.org/wiki/Object-capability_model
+https://twitter.com/bascule/status/1100473738355589120?s=20
