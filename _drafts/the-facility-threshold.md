@@ -23,3 +23,10 @@ Javascript web frameworks
 nuance of UX, churn over time
 
 Ops - so many details
+
+There's value, though
+to finding fields with a high threshold:
+it's a barrier to entry,
+and if it's in demand,
+it'll be more worth learning
+since you'll be in the minority who know it.
