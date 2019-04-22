@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+test (count $argv) -gt 0 || exit 1
+nvim (jekyll draft $argv[1] | sed -n '/^New/{s/.* \(\S*\)\.$/\1/; p}')
