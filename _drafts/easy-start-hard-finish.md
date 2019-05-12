@@ -11,3 +11,5 @@ Mongo and data consistency.
 Not liking errors. Schemas -> errors. JSON.
 
 Errors cache understanding. Tools that can be trusted to error well keep you from having to be perfect all the time.
+
+Is the a place in between?
