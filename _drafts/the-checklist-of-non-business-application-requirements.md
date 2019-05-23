@@ -16,6 +16,8 @@ At least, so it seems.
 * Accessibility
 * Continuous Integration and Deployment
 * Observability
+* System Distribution
+* Data Privacy
 * ... there was more
 
 [ and here we get to:
