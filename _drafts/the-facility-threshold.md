@@ -10,11 +10,44 @@ enough is modulated by the complexity of the system
 complexity includes gotchas and nuance
 system churn
 
+Different than not needing to read the manual.
+
 If you're not going to acheive the theshold,
 better not to do it yourself
 
+Getting someone else to do it
+is a skill, or a system
+with its own facility threshold.
+
 If it's not worth acheiving the threshold,
 don't bother.
+
+There is value in developing facility with things, though.
+{what value?}
+
+What value?
+Consider how ORMs or web frameworks
+conceal the complexities of other systems.
+i.e. use ActiveRecord, not SQL.
+SQL is arguably more powerful,
+but parsing results into objects is tedious.
+Fixing problems that will be exhibited
+at the underlying level
+(i.e. DB issues an index-violation error)
+are harder if you understand only
+the higher level framework.
+
+This is a special case
+of not having the facility with the system.
+Conversely, if you do grok the system
+fixing problems is much easier.
+It's also easier to envision what's possible.
+{expand}
+
+regex
+Unix
+Programming languages
+databases/SQL - the cost of not learning/using frameworks
 
 XML - takes a little bit,
 but you can get down most of it and not worry
