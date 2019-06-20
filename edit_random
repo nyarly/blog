@@ -1,0 +1,3 @@
+#!/usr/bin/env fish
+
+nvim _drafts/(ls _drafts | shuf | head -n 1)
