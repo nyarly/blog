@@ -3,7 +3,7 @@ layout: post
 title: The Facility Threshold
 ---
 
-To acheive facility with a system
+To achieve facility with a system
 you need to spend enough time with it
 frequently enough
 enough is modulated by the complexity of the system
@@ -12,15 +12,21 @@ system churn
 
 Different than not needing to read the manual.
 
-If you're not going to acheive the theshold,
+If you're not going to achieve the threshold,
 better not to do it yourself
 
 Getting someone else to do it
 is a skill, or a system
 with its own facility threshold.
 
-If it's not worth acheiving the threshold,
+If it's not worth achieving the threshold,
 don't bother.
+
+Corollary: a truly fire and forget tool
+may be actually _worse_
+because you'll struggle through setup,
+but when you have trouble with it,
+you don't have facility to fix it.
 
 There is value in developing facility with things, though.
 {what value?}
@@ -52,7 +58,7 @@ databases/SQL - the cost of not learning/using frameworks
 XML - takes a little bit,
 but you can get down most of it and not worry
 
-Javascript web frameworks
+JavaScript web frameworks
 nuance of UX, churn over time
 
 Ops - so many details
