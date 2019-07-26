@@ -13,6 +13,8 @@ At least, so it seems.
 * Version Control
 * Test Coverage
 * Application Security
+    * Authentication
+    * OWASP
 * Accessibility
 * Continuous Integration and Deployment
 * Observability
@@ -50,6 +52,8 @@ Some of this can be ameliorated
 by toolkits or frameworks.
 But much of it inescapably requires
 expert time and labor.
+
+*aaS -
 
 Which is,
 I guess,
