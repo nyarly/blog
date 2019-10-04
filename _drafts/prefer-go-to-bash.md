@@ -8,13 +8,14 @@ like mortar holding system components together
 brutalism: all concrete building
 
 Glue language works when system designed for glue
-Rule of thumb: 10 lines, 2 conditionals.
 
 Bash is ubiquitous.
 
 Stringly typed.
 Poor error handling.
 Many weak cases - pipelines, sockets
+
+Rule of thumb: 10 lines, 2 conditionals.
 
 Go
 is also ubiquitous,
