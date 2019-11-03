@@ -1,0 +1,3 @@
+include ~/.taskrc
+context.blog = project:Blog
+context=blog
