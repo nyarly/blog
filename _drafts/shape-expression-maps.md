@@ -94,6 +94,22 @@ can be used to map
 RDF documents that conform to one expression
 into documents that conform to the other.
 
+Boomerang & Lenses
+
 == Properties We Want
+
+We'd like to be able to recognize a well-formed Map.
+That is, a Map that has the properties of a well-formed Lens.
+So: putback, set-get, etc.
+
+Also: annealled round-trip.
+That is,
+we accept that, without putback,
+mapping back to the original expression
+may result in a subset of the original graph.
+But, if we take that subset
+and round-trip again,
+we should return to the first result graph.
+
 
 == Implications for Intermediate Representation
