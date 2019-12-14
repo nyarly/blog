@@ -113,3 +113,28 @@ we should return to the first result graph.
 
 
 == Implications for Intermediate Representation
+
+The ShexMap IR should be tabular.
+Like a Cobb Relation.
+Column names are the variables in the Shape Expressions.
+
+While recognizing a Shape Expression,
+each variable match
+results in emitting a row into the IR table.
+The table can be streamed directly to a graph producer
+that will template out
+(being the equivalent of "un-parsing")
+the required triples to support the match.
+
+Values are the value captured in the value,
+plus an identifier of the capture.
+Identifier can be a sequence number.
+This is required so that two matches of the same value
+will be distinguished as different matches,
+rather than a the same match.
+Values can also be blank
+(or null)
+for instance, before a value has been captured,
+or if a capture goes out of scope during recognition.
+
+
