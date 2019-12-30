@@ -94,6 +94,47 @@ can be used to map
 RDF documents that conform to one expression
 into documents that conform to the other.
 
+Boomerang & Lenses
+
 == Properties We Want
 
+We'd like to be able to recognize a well-formed Map.
+That is, a Map that has the properties of a well-formed Lens.
+So: putback, set-get, etc.
+
+Also: annealled round-trip.
+That is,
+we accept that, without putback,
+mapping back to the original expression
+may result in a subset of the original graph.
+But, if we take that subset
+and round-trip again,
+we should return to the first result graph.
+
+
 == Implications for Intermediate Representation
+
+The ShexMap IR should be tabular.
+Like a Cobb Relation.
+Column names are the variables in the Shape Expressions.
+
+While recognizing a Shape Expression,
+each variable match
+results in emitting a row into the IR table.
+The table can be streamed directly to a graph producer
+that will template out
+(being the equivalent of "un-parsing")
+the required triples to support the match.
+
+Values are the value captured in the value,
+plus an identifier of the capture.
+Identifier can be a sequence number.
+This is required so that two matches of the same value
+will be distinguished as different matches,
+rather than a the same match.
+Values can also be blank
+(or null)
+for instance, before a value has been captured,
+or if a capture goes out of scope during recognition.
+
+
