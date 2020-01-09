@@ -109,8 +109,24 @@ mapping back to the original expression
 may result in a subset of the original graph.
 But, if we take that subset
 and round-trip again,
-we should return to the first result graph.
+we should return to the _first result_ graph.
+That is: A map B rev A'. A !== A'.
+But A' map B' rev A'': A' == A'' and B == B'.
 
+=== A Motivating Case
+
+It would be nice to be able to apply ShExMaps to web applications.
+Specifically, to be able to take
+and RDF representation of a SQL dataset,
+map it into an arbitrary Shape.
+Use an e.g. JSON-LD representation of that shape
+as the body of a GET response.
+Allow the client to manipulate it,
+(using a linked Shape Expression as a guide)
+and issue a PUT with their changed graph.
+Reverse map the PUT body to the dataset graph,
+and construct an UPDATE from that graph,
+relying on modern SQL upsert semantics to cover the mapping to the database.
 
 == Implications for Intermediate Representation
 
@@ -136,5 +152,3 @@ Values can also be blank
 (or null)
 for instance, before a value has been captured,
 or if a capture goes out of scope during recognition.
-
-
