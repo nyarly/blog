@@ -3,6 +3,10 @@ layout: post
 title: Traits and type parameters
 ---
 
+I made myself a homework assignment
+Smart folks shared their lecture notes
+
+
 A Rust interview question that occurred to me (and that would catch me flat-footed): You're designing a new trait. Would you put a type parameter on the trait itself vs. on its method(s) vs. use an associated type? Why? Discuss trade-offs of each choice. Consider TryFrom.
 4
 1
