@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Simple Webservers with NixOps
+tags: ["technique", "ops"]
 ---
 
 After working with Nix and NixOS casually for about a year

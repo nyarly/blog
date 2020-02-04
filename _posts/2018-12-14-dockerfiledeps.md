@@ -1,6 +1,7 @@
 ---
 layout: post
 title: dockerfiledeps
+tags: ["tool", "software"]
 ---
 
 Somewhere along the line

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Three Corner Rsync
+tags: ["technique", "ops"]
 ---
 
 This is such a good trick, I wanted to share.

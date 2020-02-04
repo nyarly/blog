@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A cryptographic toolchain
+tags: ["technique", "practice"]
 ---
 
 Strong authentication is often a requirement for working with software.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: inlinefiles
+tags: ["tool", "software"]
 ---
 
 Say you've got a simple web-service to write.

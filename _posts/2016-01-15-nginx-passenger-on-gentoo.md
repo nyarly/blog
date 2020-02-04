@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Nginx + Passenger on Gentoo
+tags: ["technique", "ops"]
 ---
 From the "niche interest" desk:
 

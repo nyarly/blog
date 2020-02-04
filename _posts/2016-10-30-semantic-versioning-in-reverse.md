@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Semantic Versioning, in Reverse
+tags: ["engineering", "practice"]
 ---
 
 As phenomenal a concept as it is,
