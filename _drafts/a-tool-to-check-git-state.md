@@ -1,6 +1,7 @@
 ---
 layout: post
 title: A Tool to Check Git State
+tags: [projects, git]
 ---
 
 Lots of prompt.sh include

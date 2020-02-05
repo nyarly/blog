@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Escalating code
+tags: [software, engineering, practice, libraries]
 ---
 
 Reusability

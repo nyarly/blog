@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Future Proof Data Schemas
+tags: [software, types, musing]
 ---
 
 Challenge of any distributed application:

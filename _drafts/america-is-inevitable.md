@@ -1,6 +1,7 @@
 ---
 layout: post
 title: America Is Inevitable
+tags: [politics]
 ---
 America wins by
 cultural hegemony.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Application and Libraries, a Pattern
+tags: [engineering, philosophy]
 ---
 
 # Notes

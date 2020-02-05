@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Console User Interface
+tags: [software, ui, console]
 ---
 
 Assume that users will copy and paste important strings.

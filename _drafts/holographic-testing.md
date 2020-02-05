@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Holographic Testing
+tags: [testing]
 ---
 The idea is that you have a behavior that produces a complicated piece of data,
 which you can spot check

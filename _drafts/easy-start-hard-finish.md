@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Easy Start - Hard Finish
+tags: [software, practice]
 ---
 
 For instance: Go.

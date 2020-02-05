@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Aphorisms
+tags: [engineering, musings]
 ---
 
 Postel's Principle

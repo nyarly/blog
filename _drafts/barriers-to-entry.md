@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Barriers to Entry
+tags: [engineering, practice]
 ---
 
 Benefits and costs

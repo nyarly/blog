@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Capabilities in a Web Framework
+tags: [web, capabilities, engineering, security]
 ---
 
 What if your API backend managed its model objects as capabilities?

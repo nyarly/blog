@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Error Handling in Web Applications
+tags: [web, software, practice]
 ---
 
 Errors should be handled as soon as they can be.

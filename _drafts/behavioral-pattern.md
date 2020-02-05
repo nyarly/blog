@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Behavioral Pattern
+tags: [engineering, patterns, ldap]
 ---
 
 Notes for later:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Agile stories and software design
+tags: [software, engineering, project-management]
 ---
 
 Tension:

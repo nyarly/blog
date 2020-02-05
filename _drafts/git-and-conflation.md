@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Git and Conflation
+tags: [software, practice, git]
 ---
 
 rebase vs merge

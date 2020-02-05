@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Consider Email
+tags: [engineering, email]
 ---
 
 Wretched protocol.

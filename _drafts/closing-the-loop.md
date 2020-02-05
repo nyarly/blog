@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Closing the loop
+tags: [engineering, practice, documentation]
 ---
 
 There was documentation missing

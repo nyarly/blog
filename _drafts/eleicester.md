@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Eleicester
+tags: [personal]
 ---
 
 My middle name is Eleicester.

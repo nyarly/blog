@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Complex Interfaces
+tags: [go, interfaces, engineering, techniques]
 ---
 
 Go interfaces are

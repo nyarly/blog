@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Decide Later
+tags: [software, practice]
 ---
 
 Later decisions have more information

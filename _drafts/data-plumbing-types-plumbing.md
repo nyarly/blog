@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Data Plumbing, Types Plumbing
+tags: [engineering, practice, types]
 ---
 
 Dynamically typed languages,

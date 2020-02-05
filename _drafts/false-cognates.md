@@ -1,6 +1,7 @@
 ---
 layout: post
 title: False Cognates
+tags: [software, musing, inheritance]
 ---
 
 This is a set of posts, I think. Link 'em together etc.

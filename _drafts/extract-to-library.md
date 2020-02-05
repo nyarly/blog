@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Extract to Library
+tags: [software, practice, Libraries]
 ---
 
 Identify useful behavior

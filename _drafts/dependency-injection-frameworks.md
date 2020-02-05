@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Dependency Injection Frameworks
+tags: [software, grousing, di]
 ---
 
 They're a cancer. They're glitter.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Digital Loneliness
+tags: [culture, musings]
 ---
 
 Going onto Twitter to help you feel better

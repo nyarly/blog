@@ -1,6 +1,7 @@
 ---
 layout: post
 title: BTRFS failed hard
+tags: [grousing, ops, btrfs]
 ---
 
 I was using BTRFS

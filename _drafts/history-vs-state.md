@@ -1,6 +1,7 @@
 ---
 layout: post
 title: History vs. State
+tags: [state, software, practice]
 ---
 
 One thing that occured to me while driving recently was this: that a
