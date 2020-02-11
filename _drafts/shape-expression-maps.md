@@ -152,3 +152,9 @@ Values can also be blank
 (or null)
 for instance, before a value has been captured,
 or if a capture goes out of scope during recognition.
+
+Why not a sequence of captures?
+The sequence is definitionally unstable,
+since the match by Shape Expressions 
+isn't guaranteed to be in a particular order.
+

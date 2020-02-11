@@ -43,3 +43,24 @@ But, it's simpler to fold DNS and git into package naming.
 > This makes Go source files self-contained,
 > which makes it easier to
 > understand, modify, and copy them.
+
+Implicit package aliases
+Package alias collision in the same package
+Cross package collisions!
+
+## Principle #1: Compatibility
+
+
+> _The meaning of a name in a program should not change over time._
+
+> It’s important to think about compatibility because the most popular approach to versioning today—semantic versioning—instead encourages incompatibility.
+
+Because incrementing the major version means
+the meanings of names change
+(because e.g. functions have different behavior)
+and therefore reading code requires that you
+have to think about time.
+
+Yes, but you can't stop that.
+
+Semantic import versioning cuts through diamond dependencies. There’s no such thing as conflicting requirements for D. D version 1.3 must be backwards compatible with D version 1.2, and D version 2.0 has a different import path, D/v2.
