@@ -46,7 +46,6 @@ because the key doesn't match.
 I should figure out a way to test that outcome.
 
 Commands of note:
-
 ```
 # Exporting the pubkey
 gpg2 --export-ssh-key 0x12E21E4B9A3F82AA > root-pub.ssh
@@ -86,4 +85,46 @@ openssl rsa -modulus -noout -in test_key.pem | openssl sha256
 openssl pkcs12 -export -in test_cert.pem -inkey test_key.pem -out test.pkcs12
 # self-signed cert and key
 openssl req -x509 -nodes -newkey rsa:4096 -keyout test_key.pem -out test_cert.pem -subj '/CN=test'
+```
+
+gpgsm configs:
+root cert:
+```
+Key-Type: RSA
+Key-Grip: (root keygrip)
+Subject-Key-Id:
+Name-DN: gn=jlester,dc=madhelm,dc=net
+Issuer-DN: gn=jlester,dc=madhelm,dc=net
+Serial: random
+Hash-Algo: SHA256
+Not-After: 2030-02-19
+Signing-Key: (root keygrip) (again)
+# BasicConstraints: CA:TRUE
+Extension: 2.5.29.19 c 30030101FF
+# KeyUsage: Certificate Sign, CRL Sign
+Extension: 2.5.29.15 c 03020106
+```
+
+entity cert:
+```
+Key-Type: RSA
+#
+Name-DN: CN=Judson Lester
+Key-Grip:
+Subject-Key-Id:
+#
+Issuer-DN: gn=jlester,dc=madhelm,dc=net
+Signing-Key: (same as above)
+Authority-Key-Id: (same as above)
+#
+Serial: random
+Hash-Algo: SHA256
+Not-After: 2023-02-19
+#
+# BasicConstraints: CA:FALSE
+Extension: 2.5.29.19 c 3000
+# KeyUsage: Digital Signature, Key Encipherment
+Extension: 2.5.29.15 c 030205A0
+# ExtendedKeyUsage: Web Server Authentication, Web Client Authentication
+Extension: 2.5.29.37 n 301406082B0601050507030106082B06010505070302
 ```
