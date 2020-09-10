@@ -130,7 +130,9 @@ relying on modern SQL upsert semantics to cover the mapping to the database.
 
 == Implications for Intermediate Representation
 
-The ShexMap IR should be tabular.
+=== Option: Tabular IR
+
+The ShexMap IR could be tabular.
 Like a Cobb Relation.
 Column names are the variables in the Shape Expressions.
 
@@ -155,6 +157,5 @@ or if a capture goes out of scope during recognition.
 
 Why not a sequence of captures?
 The sequence is definitionally unstable,
-since the match by Shape Expressions 
+since the match by Shape Expressions
 isn't guaranteed to be in a particular order.
-

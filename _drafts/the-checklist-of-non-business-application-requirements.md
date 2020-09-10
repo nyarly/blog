@@ -10,17 +10,24 @@ besides and in addition to
 whatever business function it serves.
 At least, so it seems.
 
+Requirements of the development
+and operations processes:
 * Version Control
 * Test Coverage
-* Application Security
-    * Authentication
-    * OWASP
-* Accessibility
+* Code Quality Metrics
 * Continuous Integration and Deployment
 * Observability
 * System Distribution
+
+Requirements of the general public:
+* User Experience
+* Visual design
 * Data Privacy
-* ... there was more
+* Application Security
+    * Authentication
+    * OWASP
+    * Encryption
+* Accessibility
 
 [ and here we get to:
 maybe this is two separate posts:
