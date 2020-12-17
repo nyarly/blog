@@ -19,3 +19,5 @@ HTTP response handling
 Examples
 ergo
 webmachine
+
+poset for sequencing and parallelism
