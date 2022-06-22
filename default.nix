@@ -24,6 +24,8 @@ in
       pkgs.nix-gitignore.gitignoreSource [] ./.;
 
     buildInputs = [
+      pkgs.bundix
+      pkgs.nix-prefetch-git
       rubyEnv
     ];
 

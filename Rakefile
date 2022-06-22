@@ -5,12 +5,12 @@ end
 desc "Update the pinned version in the Nixops setup"
 task :update do
   puts ENV['NIXOPS_DIR']
-  sh %[git log -n 1 --pretty=format:"\\"%H\\"" > #{ENV['NIXOPS_DIR']}/blog/commit.nix]
-  sh %[cat #{ENV['NIXOPS_DIR']}/blog/commit.nix; echo]
-  sh %[nix-prefetch-git --no-deepClone git@github.com:nyarly/blog.git| jq '.sha256' > #{ENV['NIXOPS_DIR']}/blog/source.nix]
+  sh %[git log -n 1 --pretty=format:"\\"%H\\"" > #{ENV['NIXOPS_DIR']}/packages/blog/commit.nix]
+  sh %[cat #{ENV['NIXOPS_DIR']}/packages/blog/commit.nix; echo]
+  sh %[nix-prefetch-git --no-deepClone git@github.com:nyarly/blog.git| jq '.sha256' > #{ENV['NIXOPS_DIR']}/packages/blog/source.nix]
 
   %w[default.nix Gemfile Gemfile.lock gemset.nix].each do |file|
-    cp file, Pathname.new(ENV['NIXOPS_DIR']).join("blog", file).expand_path
+    cp file, Pathname.new(ENV['NIXOPS_DIR']).join("packages/blog", file).expand_path
   end
 
   puts
