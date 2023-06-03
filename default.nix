@@ -1,4 +1,7 @@
-{ pkgs ? import <nixpkgs> {} }:
+let
+  pinned = import ./pinned.nix;
+in
+  { pkgs ? pinned }:
 let
   inherit (pkgs) lib stdenv ruby bundler bundlerEnv fetchFromGitHub;
 
@@ -21,14 +24,12 @@ in
       { private = true; owner = "nyarly"; repo = "blog"; }
     )
     else
-      pkgs.nix-gitignore.gitignoreSource [] ./.;
+      pkgs.nix-gitignore.gitignoreSource ["_drafts/"] ./.;
 
     buildInputs = [
+      pkgs.bundler
       pkgs.bundix
       pkgs.nix-prefetch-git
       rubyEnv
     ];
-
-    buildPhase = "jekyll build";
-    installPhase = "cp -a _site $out";
   }

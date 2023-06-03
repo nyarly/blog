@@ -7,9 +7,15 @@ We believe were given jobs,
 as badges of virtue.
 That there's a limited supply.
 
+Which can mean,
+for instances,
+that we think about people
+"stealing" our jobs.
+As if those jobs were rightfully ours.
+
 But we have jobs
 because there's a demand for our labor.
-We're"given" jobs
+We're "given" jobs
 because of our (bad) process for matching worker to work.
 
 The demand comes from consumption.
