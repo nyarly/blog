@@ -26,10 +26,12 @@ in
     else
       pkgs.nix-gitignore.gitignoreSource ["_drafts/"] ./.;
 
-    buildInputs = [
-      pkgs.bundler
-      pkgs.bundix
-      pkgs.nix-prefetch-git
+    buildInputs = with pkgs; [
+      libmysqlclient
+      mysql
+      bundler
+      bundix
+      nix-prefetch-git
       rubyEnv
     ];
   }
