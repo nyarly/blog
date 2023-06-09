@@ -147,6 +147,17 @@
     };
     version = "2.4.0";
   };
+  kramdown-parser-gfm = {
+    dependencies = ["kramdown"];
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0a8pb3v951f4x7h968rqfsa19c8arz21zw1vaj42jza22rap8fgv";
+      type = "gem";
+    };
+    version = "1.1.0";
+  };
   liquid = {
     groups = ["default" "jekyll_plugins"];
     platforms = [];
