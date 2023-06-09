@@ -19,9 +19,14 @@ in
     name = "blog-jdl";
 
     src = if builtins.pathExists(./source.json) then
-    fetchFromGitHub (
-      builtins.fromJSON (builtins.readFile ./source.json) //
-      { private = true; owner = "nyarly"; repo = "blog"; }
+    builtins.fetchGit (
+      let
+        source = builtins.fromJSON (builtins.readFile ./source.json);
+      in
+      {
+        url = "git@github.com:nyarly/blog.git";
+        inherit (source) rev;
+      }
     )
     else
       pkgs.nix-gitignore.gitignoreSource ["_drafts/"] ./.;
@@ -34,4 +39,7 @@ in
       nix-prefetch-git
       rubyEnv
     ];
+
+    buildPhase = "jekyll build";
+    installPhase = "cp -a _site $out";
   }
