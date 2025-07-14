@@ -21,8 +21,13 @@ markdown: kramdown
 
 exclude:
   - Rakefile
+  - flake.nix
+  - flake.lock
   - shell.nix
   - default.nix
+  - pinned.nix
   - gemset.nix
   - Gemfile
   - Gemfile.lock
+  - edit_random
+  - start_draft

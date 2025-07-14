@@ -7,11 +7,12 @@ Deploy as a whole state isn't treated as a gold standard
 Cross-team coordination is hard
 State maintenance becomes expensive
 e.g. Terraform discourages this
+e.g. Velero exists because of thi
 
 Deployment is treated as a piecemeal activity
 e.g. Deploys per-microservice or component
 
-Why whole state deploy?
+## Why whole state deploy?
 DevOps practice of identical environments
 Deploy _same_ artifact to staging and prod.
 Partial deploys aren't same in both environments -

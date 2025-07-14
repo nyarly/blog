@@ -6,61 +6,66 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, flake-utils, nixpkgs }: (flake-utils.lib.eachDefaultSystem (system: let
-    pkgs = nixpkgs.legacyPackages.${system};
-
-    rubyEnv = pkgs.bundlerEnv {
-      inherit (pkgs) ruby;
-
-      name = "jekyll-blog";
-
-      gemfile = ./Gemfile;
-      lockfile = ./Gemfile.lock;
-      gemset = ./gemset.nix;
-    };
-  in
+  outputs =
     {
-    packages.blog = pkgs.stdenv.mkDerivation {
-      name = "blog-jdl";
+      self,
+      flake-utils,
+      nixpkgs,
+    }:
+    (flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
 
-      src = if builtins.pathExists(./source.json) then
-        builtins.fetchGit (
-          let
-            source = builtins.fromJSON (builtins.readFile ./source.json);
-          in
-            {
-            url = "git@github.com:nyarly/blog.git";
-            inherit (source) rev;
-          }
-        )
-      else
-        pkgs.nix-gitignore.gitignoreSource ["_drafts/"] ./.;
+        rubyEnv = pkgs.bundlerEnv {
+          inherit (pkgs) ruby;
 
-      buildInputs = with pkgs; [
-        libmysqlclient
-        mysql
-        bundler
-        bundix
-        nix-prefetch-git
-        rubyEnv
-      ];
+          name = "jekyll-blog";
 
-      buildPhase = "jekyll build";
-      installPhase = "cp -a _site $out";
-    };
+          gemfile = ./Gemfile;
+          lockfile = ./Gemfile.lock;
+          gemset = ./gemset.nix;
+        };
 
-    packages.default = self.packages.${system}.blog;
+        buildInputs = with pkgs; [
+          bundler
+          bundix
+          nix-prefetch-git
+          rubyEnv
+        ];
 
-    devShells.default = pkgs.mkShell {
-      buildInputs = with pkgs; [
-        libmysqlclient
-        mysql
-        bundler
-        bundix
-        nix-prefetch-git
-        rubyEnv
-      ];
-    };
-  }
-  ));
+      in
+      {
+        packages.blog = pkgs.stdenv.mkDerivation {
+          name = "blog-jdl";
+
+          src =
+            if builtins.pathExists (./source.json) then
+              builtins.fetchGit (
+                let
+                  source = builtins.fromJSON (builtins.readFile ./source.json);
+                in
+                {
+                  url = "git@github.com:nyarly/blog.git";
+                  inherit (source) rev;
+                }
+              )
+            else
+              pkgs.nix-gitignore.gitignoreSource [ "_drafts/" ] ./.;
+
+          buildInputs = [
+            rubyEnv
+          ];
+
+          buildPhase = "jekyll build";
+          installPhase = "cp -a _site $out";
+        };
+
+        packages.default = self.packages.${system}.blog;
+
+        devShells.default = pkgs.mkShell {
+          inherit buildInputs;
+        };
+      }
+    ));
 }
